@@ -1,0 +1,53 @@
+{
+  "contract": "../../hito.md#criterios-de-aceptacion-de-esta-continuacion",
+  "targetViewports": [
+    "390x844",
+    "1440x1000"
+  ],
+  "accessibility": {
+    "status": "pass",
+    "evidence": "La composición aprobada se verificó con la imagen local aportada por dirección y, al simular su ausencia, con el fallback local de Mizuno K / Pexels. La copia de la imagen aportada y sus capturas se excluyen de Git por licencia no verificada. El fallback y sus créditos están documentados. Los filtros están etiquetados y el acceso al mapa es un enlace. El foco del CTA al mapa usa contorno blanco sobre el hero. Lighthouse móvil y escritorio: 100 en accesibilidad y 56 comprobaciones aprobadas, cero fallidas en la medición previa; no se repitió Lighthouse en esta pasada. No se hizo prueba con lector de pantalla; Lighthouse no certifica WCAG."
+  },
+  "responsive": {
+    "status": "pass",
+    "evidence": "Probado en 320x740, 390x844, 768x1024 y 1440x1000 después de ajustar el sangrado del hero a los márgenes del contenedor. En cada ancho scrollWidth coincidió con clientWidth. En 320 y 390 px el formulario completo queda dentro de la primera vista y el CTA del mapa está visible. En escritorio el hero incluye el buscador y el mapa/resultados comienzan debajo. Se inspeccionó render y foco visible; la lectura del texto sobre la fotografía fue revisada visualmente, sin auditoría de contraste automatizada para píxeles fotográficos."
+  },
+  "contentStates": {
+    "loading": {
+      "status": "not-applicable",
+      "reason": "Los ejemplos se renderizan sincrónicamente desde un arreglo local; no existe carga asíncrona."
+    },
+    "empty": {
+      "status": "pass",
+      "evidence": "La búsqueda sin coincidencias mostró el mensaje vacío y ocultó los marcadores."
+    },
+    "error": {
+      "status": "pass",
+      "evidence": "El control de demostración ocultó fichas y marcadores, mostró un aviso accesible y ofreció restablecer la búsqueda."
+    },
+    "partial": {
+      "status": "pass",
+      "evidence": "El detalle separa características de habitación y espacios comunes del inmueble. Reutiliza únicamente Patio común y Cocina compartida, ya existentes en los datos ficticios. Declara que no hay fotografías reales del alojamiento; el hero mantiene las fotos editoriales separadas y no las presenta como evidencia de propiedad. El estado 360° permanece no disponible."
+    },
+    "success": {
+      "status": "pass",
+      "evidence": "La búsqueda Centro y presupuesto de 700000 devolvió una ficha; el filtro compartido devolvió habitación 1 de Casa Arrayán; la selección de mapa y ficha se reflejó en ambas vistas."
+    },
+    "permission": {
+      "status": "not-applicable",
+      "reason": "No hay autenticación, cuentas ni datos protegidos en el prototipo."
+    }
+  },
+  "renderedEvidence": [
+    {
+      "viewport": "390x844",
+      "artifact": "hero-refinado-390x844.jpg",
+      "observation": "Captura móvil versionable de la composición de una sola foto, buscador integrado y acceso al mapa. La foto adjunta aprobada se mantiene solo en la copia local; en checkout limpio se muestra el fallback Pexels."
+    },
+    {
+      "viewport": "1440x1000",
+      "artifact": "hero-refinado-1440x1000.jpg",
+      "observation": "Captura escritorio versionable de la composición de una sola foto, buscador integrado y mapa/resultados a continuación. La foto adjunta aprobada se mantiene solo en la copia local; en checkout limpio se muestra el fallback Pexels."
+    }
+  ]
+}

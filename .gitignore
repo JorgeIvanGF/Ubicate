@@ -1,0 +1,31 @@
+# Dependencias y resultados de compilación web
+node_modules/
+dist/
+build/
+coverage/
+
+# Configuración y secretos locales
+.codex/
+.env
+.env.*
+!.env.example
+
+# Ejecutores temporales de las PoC Auth y backup
+/docs/fases/F01/H00/poc-auth-data-api-rls/scripts/crear-backup-baseline.ps1
+/docs/fases/F01/H00/poc-auth-data-api-rls/scripts/ejecutar-poc-auth-data-api-rls.ps1
+
+# Registros y archivos temporales
+*.log
+*.tmp
+*.swp
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Adjuntos locales sin licencia verificada y capturas que los contienen
+/docs/fases/F00/H03/prototipo/assets/vida-estudiantil/hero-cocina-grupo-usuario.jpg
+/docs/fases/F00/H03/prototipo/evidencias/hero-cocina-grupo-390x844.jpg
+/docs/fases/F00/H03/prototipo/evidencias/hero-cocina-grupo-1440x1000.jpg

@@ -1,0 +1,89 @@
+{
+  "name": "Ubícate / propuesta 03",
+  "status": "identidad y dirección visual D-UX-004 aprobadas para el prototipo local",
+  "colors": {
+    "brand.primary": {
+      "value": "#185BE7",
+      "usage": "acciones prioritarias, selección y resaltado del mapa"
+    },
+    "brand.secondary": {
+      "value": "#35C7AE",
+      "usage": "marcadores, chips, iconos del mapa y detalles de ilustración"
+    },
+    "brand.accent": {
+      "value": "#D7F46B",
+      "usage": "marca, detalles del hero, puntos de mapa y estados de reconocimiento"
+    },
+    "surface.canvas": {
+      "value": "#F5F7FB",
+      "usage": "fondo neutro"
+    },
+    "surface.default": {
+      "value": "#FFFFFF",
+      "usage": "tarjetas, formulario y leyenda"
+    },
+    "text.primary": {
+      "value": "#17243A",
+      "usage": "texto principal y superficies oscuras"
+    },
+    "text.secondary": {
+      "value": "#4D5C70",
+      "usage": "texto secundario sobre superficies claras"
+    },
+    "border.default": {
+      "value": "#DCE4F0",
+      "usage": "bordes y separadores"
+    },
+    "action.primary.hover": {
+      "value": "#1248B8",
+      "usage": "estado hover de acciones azules"
+    },
+    "interaction.secondary.text": {
+      "value": "#126B59",
+      "usage": "texto sobre acentos turquesa claros"
+    },
+    "brand.logoLime": {
+      "value": "#D7F46B",
+      "usage": "variante de símbolo con azul y turquesa"
+    },
+    "brand.turquoiseInk": {
+      "value": "#126B59",
+      "usage": "texto pequeño sobre fondos turquesa claros"
+    },
+    "surface.turquoiseSoft": {
+      "value": "#DFF6F1",
+      "usage": "badges y chips con texto oscuro"
+    },
+    "surface.limeSoft": {
+      "value": "#F0F8CF",
+      "usage": "chips alternos y detalles de acento"
+    }
+  },
+  "layout": {
+    "principles": [
+      "mobile-first",
+      "buscador visible antes del mapa",
+      "mapa priorizado antes de los resultados",
+      "tarjetas ordenadas y legibles",
+      "espaciado generoso",
+      "turquesa y lima reconocibles en mapa, marca y metadatos sin teñir superficies completas"
+    ],
+    "radii": {
+      "small": "0.8rem",
+      "medium": "1.25rem",
+      "large": "1.8rem"
+    },
+    "spacingBase": "0.25rem"
+  },
+  "accessibility": {
+    "focus": "3px sólido en azul primario",
+    "minimumInteractiveSize": "40px; selector de propuestas 44px en móvil",
+    "contrastPairsToVerify": [
+      "text.primary / surface.canvas",
+      "text.secondary / surface.canvas",
+      "white / brand.primary",
+      "turquoiseInk / surface.turquoiseSoft",
+      "text.primary / surface.limeSoft"
+    ]
+  }
+}

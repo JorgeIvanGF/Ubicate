@@ -1,0 +1,33 @@
+{
+  "fixture_version": 1,
+  "warning": "Datos inventados para pruebas. Los nombres de sectores son etiquetas de escenario, no divisiones oficiales ni direcciones reales. No mostrar como inventario público.",
+  "coordinate_reference": "WGS84 longitude, latitude; synthetic points near a generic Tunja test origin, not geocoded addresses",
+  "advertisers": [
+    {"id": "adv-a", "display_name": "Anunciante Ficticio A", "email": "adv-a@example.invalid", "role": "advertiser"},
+    {"id": "adv-b", "display_name": "Anunciante Ficticio B", "email": "adv-b@example.invalid", "role": "advertiser"},
+    {"id": "admin-test", "display_name": "Administración Ficticia", "email": "admin@example.invalid", "role": "admin"}
+  ],
+  "search_anchors": [
+    {"id": "center", "label": "Centro de prueba", "sector": "Centro", "coordinates": [-73.3670, 5.5350]},
+    {"id": "north", "label": "Norte de prueba", "sector": "Norte", "coordinates": [-73.3670, 5.5450]},
+    {"id": "south", "label": "Sur de prueba", "sector": "Sur", "coordinates": [-73.3670, 5.5250]},
+    {"id": "west", "label": "Occidente de prueba", "sector": "Occidente", "coordinates": [-73.3780, 5.5350]}
+  ],
+  "properties": [
+    {"id": "prop-a-01", "owner_id": "adv-a", "label": "Casa ficticia A", "sector": "Centro", "coordinates": [-73.3671, 5.5351], "units": [
+      {"id": "unit-a-01", "label": "Habitación individual A1", "monthly_cop": 650000, "available": true, "photo_ids": ["photo-a-01"]},
+      {"id": "unit-a-02", "label": "Habitación individual A2", "monthly_cop": 610000, "available": false, "photo_ids": ["photo-a-02"]}
+    ]},
+    {"id": "prop-b-01", "owner_id": "adv-b", "label": "Casa ficticia B", "sector": "Norte", "coordinates": [-73.3672, 5.5451], "units": [
+      {"id": "unit-b-01", "label": "Habitación compartida B1", "monthly_cop": 480000, "available": true, "photo_ids": ["photo-b-01", "photo-b-02"]}
+    ]},
+    {"id": "prop-b-02", "owner_id": "adv-b", "label": "Casa ficticia B2", "sector": "Sur", "coordinates": [-73.3671, 5.5251], "units": [
+      {"id": "unit-b-02", "label": "Habitación individual B2", "monthly_cop": 720000, "available": true, "photo_ids": ["photo-b-03"]}
+    ]}
+  ],
+  "radius_cases": [
+    {"id": "center-1km", "anchor_id": "center", "radius_m": 1000, "expected_units": ["unit-a-01"]},
+    {"id": "north-1km", "anchor_id": "north", "radius_m": 1000, "expected_units": ["unit-b-01"]},
+    {"id": "south-1km", "anchor_id": "south", "radius_m": 1000, "expected_units": ["unit-b-02"]}
+  ]
+}

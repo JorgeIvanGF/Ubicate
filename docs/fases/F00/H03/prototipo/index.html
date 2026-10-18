@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <meta name="description" content="Prototipo exploratorio de Ubícate con alojamientos ficticios en Tunja.">
+    <title>Ubícate | Explorar alojamientos en Tunja</title>
+    <link rel="icon" type="image/png" href="assets/identidad/logotipo-ubicate-aprobado.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body data-concept="ubicate">
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="u. ubícate, inicio">
+        <img class="brand-mark" src="assets/identidad/logotipo-ubicate-aprobado.png" alt="Ubícate">
+      </a>
+      <nav class="top-nav" aria-label="Navegación principal">
+        <a href="#resultados">Explorar</a>
+        <a href="#como-funciona">Cómo funciona</a>
+      </nav>
+    </header>
+
+    <main id="contenido">
+      <section class="hero-search" id="inicio" aria-labelledby="page-title">
+        <div class="intro">
+          <figure class="hero-photo hero-photo-main">
+            <img src="assets/vida-estudiantil/hero-cocina-grupo-usuario.jpg" data-fallback-src="assets/vida-estudiantil/pexels-cocina-compartida-13334672.jpg" alt="Personas jóvenes adultas comparten una cocina y preparan alimentos." width="1600" height="1059" fetchpriority="high">
+          </figure>
+          <div class="intro-copy">
+            <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> Tu vida universitaria en Tunja</p>
+            <h1 id="page-title">Un lugar para<br><em>sentirte en casa.</em></h1>
+            <p class="intro-text">Encuentra dónde vivir, estudiar y compartir tu vida universitaria.</p>
+            <a class="hero-map-link" href="#map-title">Explorar en el mapa <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+
+        <section class="search-panel" aria-label="Buscar alojamientos ficticios">
+        <form id="search-form" class="search-form">
+          <div class="field field-neighborhood">
+            <label for="query">¿Dónde te gustaría vivir?</label>
+            <div class="input-with-icon">
+              <span aria-hidden="true">⌖</span>
+              <input id="query" name="query" type="search" placeholder="Barrio o lugar" autocomplete="off">
+            </div>
+          </div>
+          <div class="field field-budget">
+            <label for="budget">Presupuesto mensual</label>
+            <select id="budget" name="budget">
+              <option value="all">Cualquier precio</option>
+              <option value="700000">Hasta $700.000</option>
+              <option value="800000">Hasta $800.000</option>
+              <option value="900000">Hasta $900.000</option>
+            </select>
+          </div>
+          <div class="field field-kind">
+            <label for="room-kind">Tipo de espacio</label>
+            <select id="room-kind" name="kind">
+              <option value="all">Habitación</option>
+              <option value="private">Habitación privada</option>
+              <option value="shared">Habitación compartida</option>
+            </select>
+          </div>
+          <button class="search-button" type="submit"><span aria-hidden="true">⌕</span><span>Buscar</span></button>
+        </form>
+        <p class="demo-disclaimer"><span aria-hidden="true">i</span> Prototipo con anuncios y ubicaciones ficticios. El mapa no representa direcciones reales.</p>
+        </section>
+        <p class="photo-disclosure">Imagen editorial; no representa un anuncio ni un alojamiento.</p>
+      </section>
+
+      <nav class="mobile-view-nav" aria-label="Ir a resultados">
+        <a href="#map-title">Mapa</a><a href="#results-title">Lista</a>
+      </nav>
+      <section class="explore-layout" id="resultados" aria-labelledby="results-title">
+        <div class="results-column">
+          <div class="results-heading">
+            <div>
+              <p class="eyebrow">Tunja, Boyacá <span aria-hidden="true">·</span> Demo ficticia</p>
+              <h2 id="results-title">Habitaciones para comparar</h2>
+            </div>
+            <button type="button" id="sort-button" class="sort-button" aria-pressed="false">
+              <span aria-hidden="true">↕</span> Menor precio
+            </button>
+          </div>
+          <p id="result-count" class="result-count" aria-live="polite">3 espacios de ejemplo</p>
+          <div id="listing-list" class="listing-list"></div>
+          <p id="empty-state" class="empty-state" hidden>No hay ejemplos con esos filtros. Prueba otra búsqueda.</p>
+          <p id="error-state" class="error-state" hidden role="alert">No se pudo completar esta búsqueda de demostración. Revisa los filtros o restablece el ejemplo.</p>
+        </div>
+
+        <aside class="map-panel" aria-labelledby="map-title">
+          <div class="map-header">
+            <div>
+              <p class="eyebrow">Explora la zona</p>
+              <h2 id="map-title">Alojamientos en el mapa</h2>
+            </div>
+            <span class="map-symbol" aria-hidden="true">⌖</span>
+          </div>
+          <div class="map-canvas" role="group" aria-label="Mapa esquemático con ubicaciones ficticias">
+            <svg class="map-art" viewBox="0 0 660 500" role="img" aria-labelledby="map-svg-title map-svg-desc" preserveAspectRatio="xMidYMid slice">
+              <title id="map-svg-title">Mapa esquemático de Tunja</title>
+              <desc id="map-svg-desc">Calles ilustradas y referencias generales. No corresponde a una cartografía real.</desc>
+              <rect width="660" height="500" fill="var(--map-ground)"></rect>
+              <path class="park" d="M18 45 150 10l92 88-42 113-151 4zM475 328l132-35 43 99-104 91-118-43z"></path>
+              <path class="road road-main" d="M-15 335 675 135M78-20l123 550M386-30 285 540M-30 135l708 219M520-20 437 536M-20 438l686-275"></path>
+              <path class="road road-side" d="m-10 255 683-109M28 80l639 270M-8 390 615 3M149-5l-52 510M335-5l28 530M588-5 256 505M-3 190 662 433M-10 475 646 35"></path>
+              <circle class="map-landmark" cx="148" cy="275" r="11"></circle>
+              <circle class="map-landmark map-landmark-secondary" cx="455" cy="222" r="8"></circle>
+              <text x="56" y="293" class="map-label">Centro</text>
+              <text x="405" y="83" class="map-label">Sector universitario</text>
+              <text x="479" y="455" class="map-label">Tunja · esquema</text>
+            </svg>
+            <div id="map-controls" class="map-controls" role="group" aria-label="Ejemplos de anuncios en el mapa">
+              <button type="button" class="map-price" data-listing="1" aria-label="Mostrar ejemplo 1, 680 mil pesos mensuales">$680 mil</button>
+              <button type="button" class="map-price" data-listing="2" aria-label="Mostrar ejemplo 2, 740 mil pesos mensuales">$740 mil</button>
+              <button type="button" class="map-price" data-listing="3" aria-label="Mostrar ejemplo 3, 820 mil pesos mensuales">$820 mil</button>
+              <button type="button" class="map-price" data-listing="4" aria-label="Mostrar ejemplo 4, 790 mil pesos mensuales">$790 mil</button>
+            </div>
+            <div class="map-legend"><span class="legend-dot" aria-hidden="true"></span>Ubicación aproximada ficticia</div>
+          </div>
+          <p class="map-caption">Mapa ilustrativo, sin geolocalización ni datos cartográficos reales.</p>
+        </aside>
+      </section>
+
+      <details class="demo-tools"><summary>Controles de demostración</summary>
+        <p>Permiten revisar estados sin conectarse a un servicio.</p>
+        <button type="button" id="simulate-error">Simular error de búsqueda</button>
+        <button type="button" id="reset-demo">Restablecer búsqueda</button>
+      </details>
+
+      <section class="how-it-works" id="como-funciona" aria-labelledby="how-title">
+        <div class="how-icon" aria-hidden="true">✳</div>
+        <div><p class="eyebrow">Diseñado para empezar fácil</p><h2 id="how-title">Encuentra tu espacio, a tu manera.</h2></div>
+        <p>Compara ejemplos por zona, precio y detalles. El prototipo ilustra una experiencia posible, no ofrece alojamientos reales.</p>
+      </section>
+    </main>
+    <footer class="site-footer"><span>ubícate <span aria-hidden="true">·</span> prototipo local</span><span>Datos, ubicaciones y disponibilidad ficticios</span></footer>
+    <dialog id="detail-dialog" aria-labelledby="detail-title"><div class="dialog-shell"><button type="button" class="dialog-close" data-close-dialog aria-label="Cerrar detalle">Cerrar</button><div id="detail-content"></div></div></dialog>
+    <dialog id="tour-dialog" aria-labelledby="tour-title"><div class="dialog-shell"><button type="button" class="dialog-close" data-close-dialog aria-label="Cerrar recorrido">Cerrar</button><h2 id="tour-title">Recorrido 360°</h2><p>No hay un panorama real cargado para este alojamiento. Esta demostración no simula una imagen 360°.</p><div class="tour-placeholder" role="img" aria-label="Panorama no disponible"><span>Panorama no disponible</span></div></div></dialog>
+    <div id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
