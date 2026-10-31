@@ -1,0 +1,244 @@
+{
+  "baseURL": "http://127.0.0.1:5173/",
+  "viewportChecks": [
+    {
+      "width": 320,
+      "height": 844,
+      "innerWidth": 320,
+      "scrollWidth": 320,
+      "mobileSwitchDisplay": "grid",
+      "jsMobile": true,
+      "cssMobile": true,
+      "mapCanvas": {
+        "width": 290,
+        "height": 470.625
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "innerWidth": 390,
+      "scrollWidth": 390,
+      "mobileSwitchDisplay": "grid",
+      "jsMobile": true,
+      "cssMobile": true,
+      "mapCanvas": {
+        "width": 360,
+        "height": 470.625
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "innerWidth": 768,
+      "scrollWidth": 768,
+      "mobileSwitchDisplay": "none",
+      "jsMobile": false,
+      "cssMobile": false,
+      "mapCanvas": {
+        "width": 334,
+        "height": 468
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "innerWidth": 1440,
+      "scrollWidth": 1440,
+      "mobileSwitchDisplay": "none",
+      "jsMobile": false,
+      "cssMobile": false,
+      "mapCanvas": {
+        "width": 728.796875,
+        "height": 491
+      }
+    }
+  ],
+  "reproduced": {
+    "listSelectionFocusedMarker": {
+      "activeLabel": "$760k, Casa del Arrayán, Habitación 2, 760.000 pesos al mes",
+      "activeUnitId": "arrayan-2",
+      "activeTag": "BUTTON",
+      "activeClass": "map-price-marker is-selected",
+      "activeText": "$760k",
+      "targetExists": true,
+      "targetLabel": "$760k, Casa del Arrayán, Habitación 2, 760.000 pesos al mes",
+      "selectedMarkerIds": [
+        "arrayan-2"
+      ]
+    },
+    "breakpoint720": {
+      "listVisible": false,
+      "mapVisible": true,
+      "jsMobile": true,
+      "cssMobile": true,
+      "activeView": "Ver mapa"
+    },
+    "tileOutage": {
+      "alertCount": 1,
+      "mapUnavailableVisible": true,
+      "filterStillVisible": true,
+      "listingCount": 2,
+      "zoneValue": "Centro",
+      "priceValue": "750000",
+      "featureChecked": true,
+      "failedTiles": [
+        "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4853/7940.pbf",
+        "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4853/7939.pbf",
+        "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4854/7940.pbf",
+        "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4854/7939.pbf",
+        "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4852/7940.pbf",
+        "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4852/7939.pbf"
+      ],
+      "tileRequestCount": 34
+    }
+  },
+  "observed": {
+    "accessibilityInitial": [],
+    "accessibilityMobile": [],
+    "markerGeometry": [
+      {
+        "label": "$590k, Casa del Arrayán, Habitación 1, 590.000 pesos al mes",
+        "x": 348,
+        "y": 787,
+        "w": 61,
+        "h": 31
+      },
+      {
+        "label": "$760k, Casa del Arrayán, Habitación 2, 760.000 pesos al mes",
+        "x": 420,
+        "y": 787,
+        "w": 61,
+        "h": 31
+      },
+      {
+        "label": "$890k, Casa del Almendro, Estudio independiente, 890.000 pesos al mes",
+        "x": 483,
+        "y": 756,
+        "w": 61,
+        "h": 31
+      },
+      {
+        "label": "$720k, Casa Limón, Habitación individual, 720.000 pesos al mes",
+        "x": 497,
+        "y": 628,
+        "w": 61,
+        "h": 31
+      },
+      {
+        "label": "$480k, Casa Limón, Habitación compartida, 480.000 pesos al mes",
+        "x": 569,
+        "y": 628,
+        "w": 61,
+        "h": 31
+      },
+      {
+        "label": "$820k, Casa de los Robles, Habitación con balcón, 820.000 pesos al mes",
+        "x": 328,
+        "y": 706,
+        "w": 61,
+        "h": 31
+      },
+      {
+        "label": "$680k, Casa del Saúco, Habitación luminosa, 680.000 pesos al mes",
+        "x": 429,
+        "y": 838,
+        "w": 61,
+        "h": 31
+      }
+    ],
+    "markerPointerHit": {
+      "markerRect": {
+        "x": 566.5836181640625,
+        "y": 554.9116821289062,
+        "width": 64.83282470703125,
+        "height": 64.8328857421875
+      },
+      "frameRect": {
+        "x": 54,
+        "y": 507.828125,
+        "width": 730.796875,
+        "height": 493
+      },
+      "scrollY": 56,
+      "hitTag": "BUTTON",
+      "hitClass": "map-price-marker"
+    },
+    "combinedFilters": {
+      "listings": 2,
+      "markers": 2
+    },
+    "accessibilityDialog": [],
+    "dialogInitialFocus": "Cerrar detalle",
+    "dialogShiftTabFocus": "Cerrar detalle",
+    "dialogTabFocus": "Cerrar detalle",
+    "dialogEscapeClosed": true,
+    "dialogFocusRestored": true,
+    "toggleKeyboard": {
+      "activeElement": "Lista 7, ver lista",
+      "mapPressed": "false",
+      "listPressed": "true"
+    },
+    "mapResizeAfterVisibility": {
+      "containerWidth": 360,
+      "canvasWidth": 360
+    },
+    "mapResizeHiddenWidth": 0,
+    "retryResult": {
+      "alertCount": 0,
+      "markers": 2,
+      "listingCount": 2
+    },
+    "networkHosts": [
+      "127.0.0.1:5173",
+      "tiles.openfreemap.org"
+    ],
+    "supabaseRequests": [],
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2425/3969.pbf",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2427/3969.pbf",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2425/3970.pbf",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2427/3970.pbf",
+        "error": "net::ERR_ABORTED"
+      }
+    ],
+    "errorResponses": [
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4853/7940.pbf",
+        "status": 503
+      },
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4853/7939.pbf",
+        "status": 503
+      },
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4854/7940.pbf",
+        "status": 503
+      },
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4854/7939.pbf",
+        "status": 503
+      },
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4852/7940.pbf",
+        "status": 503
+      },
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4852/7939.pbf",
+        "status": 503
+      }
+    ]
+  }
+}

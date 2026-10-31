@@ -1,6 +1,6 @@
 # Tasks: F01-H01 Exploración funcional local del MVP
 
-**Estado:** apertura autorizada 2026-10-30. Se conserva F01-H00 abierto; AC-04 parcial/bloqueado. Sin conexión Supabase remota ni cambios productivos.
+**Estado:** implementación y verificación técnica local completadas 2026-10-30; pendiente de revisión/aceptación de Dirección. Se conserva F01-H00 abierto; AC-04 parcial/bloqueado. Sin conexión Supabase remota ni cambios productivos.
 
 ## Spec, plan y preparación
 
@@ -26,13 +26,13 @@
 - [x] Verificar funciones de dominio cubiertas por pruebas unitarias y generar build local; evidencia y alcance en `evidencia.md`.
 - [x] Ejecutar `npm audit --audit-level=moderate`; cero vulnerabilidades reportadas.
 - [x] Ejecutar `git diff --check`; sin errores.
-- [ ] Completar verificación interactiva AC-FE-01 a AC-FE-09; estados individualizados en `evidencia.md`.
-- [ ] Verificar 320, 390, 768 y 1440 px, desbordamiento y controles esenciales en navegador.
-- [ ] Revisar foco, labels, semántica y estados accesibles en navegador.
-- [ ] Inspeccionar solicitudes externas en Network: OpenFreeMap necesario; cero requests a Supabase; ningún secreto.
-- [ ] Registrar problemas y hasta tres iteraciones de corrección por unidad de trabajo.
+- [x] Completar verificación interactiva automatizada AC-FE-01 a AC-FE-09; estados y límites individualizados en `evidencia.md`.
+- [x] Verificar 320, 390, 768 y 1440 px, desbordamiento y controles esenciales en Chromium aislado.
+- [x] Revisar foco, labels, semántica, estados accesibles y axe en Chromium aislado.
+- [x] Inspeccionar solicitudes HTTP: OpenFreeMap como único host externo; cero solicitudes Supabase; auditoría sin secretos.
+- [x] Registrar defectos reproducidos y correcciones en `evidencia.md`; se detiene tras esta iteración de verificación convergente.
 - [x] Documentar comandos ejecutados, resultados, limitaciones y pasos para reproducir recorrido.
-- [ ] Presentar para aceptación de Dirección. No cerrar automáticamente.
+- [ ] Revisión visual y aceptación de Dirección. No cerrar automáticamente.
 
 ## Límites
 

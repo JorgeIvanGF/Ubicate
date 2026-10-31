@@ -1,6 +1,6 @@
 # F01-H01: Exploración funcional local del MVP
 
-**Estado:** abierto por aprobación de Dirección del 2026-10-30; implementación local en curso. No equivale a selección de arquitectura productiva ni cierra F01-H00.
+**Estado:** abierto por aprobación de Dirección del 2026-10-30; implementación y verificación técnica local completadas para revisión. Aceptación humana pendiente. No equivale a selección de arquitectura productiva ni cierra F01-H00.
 
 ## Objetivo
 
