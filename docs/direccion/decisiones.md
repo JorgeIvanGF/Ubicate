@@ -77,6 +77,12 @@ Dirección aprobó el cierre de F00-H04 después de revisar AC-01 a AC-12 y auto
 
 El estado global de Fase 0 se registra como **no cerrado por historial incompleto**: F00-H03 y F00-H04 tienen cierres verificables; H00 y H01 tienen ratificaciones actuales, sin evidencia disponible de sus cierres históricos; H02 permanece provisional. No se deduce que los hitos sin artefactos nunca ocurrieron.
 
+## Apertura F01-H01 aprobada por Dirección, 2026-10-30
+
+Dirección aprobó formalmente abrir y ejecutar **F01-H01: Exploración funcional local del MVP** con React + TypeScript, MapLibre GL JS y OpenFreeMap, uso local y ficticio, presupuesto adicional USD 0, instalación de dependencias gratuitas y pruebas locales. Alcance y AC-FE-01 a AC-FE-09, con viewport 320, 390, 768 y 1440 px, están registrados en [F01-H01 Spec](../fases/F01/H01/spec.md). La autorización se limita a este hito y no selecciona la arquitectura productiva definitiva.
+
+F01-H00 permanece abierto; AC-04 continúa parcial, bloqueado y no satisfecho. No se repiten las pruebas de restauración. Supabase/PostgreSQL/PostGIS sigue candidato futuro, pero no se conectará al remoto ni se selecciona como arquitectura productiva por esta apertura.
+
 ## Alcance de pruebas de correo de F01-H00, 2026-10-16
 
 Dirección decidió dejar fuera de F01-H00 las pruebas que envían correos reales de confirmación de registro y recuperación de contraseña. No se requiere añadir las direcciones de prueba al equipo Supabase ni contratar/configurar un SMTP externo para completar esta evaluación arquitectónica. La decisión no aprueba cambios de configuración Auth ni afecta la política USD 0.

@@ -24,6 +24,8 @@ F00-H03 y F00-H04 están cerrados con aprobación humana verificable. F01-H00 es
 - [Investigación arquitectónica comparativa](docs/fases/F00/H04/investigacion-arquitectonica-comparativa.md)
 - [Acta de cierre F00-H04](docs/fases/F00/H04/cierre-propuesto.md)
 - [F01-H00: spec](docs/fases/F01/H00/spec.md), [plan](docs/fases/F01/H00/plan.md), [tasks](docs/fases/F01/H00/tasks.md), [evaluación inicial](docs/fases/F01/H00/evaluacion.md), [protocolo técnico](docs/fases/F01/H00/protocolo-pruebas-tecnicas.md), [PoC PostGIS/RLS](docs/fases/F01/H00/poc-postgis-rls/README.md), [propuesta PoC Auth + Data API + RLS](docs/fases/F01/H00/poc-auth-data-api-rls/README.md)
+- [F01-H01: exploración funcional local del MVP](docs/fases/F01/H01/spec.md), [plan](docs/fases/F01/H01/plan.md) y [tasks](docs/fases/F01/H01/tasks.md); la propuesta antecedente se conserva en `docs/fases/F01/propuesta-hito-exploracion/`.
+- [Aplicación F01-H01](apps/exploracion-local/README.md) y [evidencia de aceptación](docs/fases/F01/H01/evidencia.md).
 
 ## Método de trabajo
 

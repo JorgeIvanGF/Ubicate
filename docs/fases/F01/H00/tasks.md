@@ -1,6 +1,8 @@
 # Propuesta de tasks: F01-H00
 
-**Estado vigente, 2026-10-17:** hito abierto. La evaluación documental/local y las pruebas esenciales PostgreSQL/PostGIS/RLS y Auth/JWT/Data API/RLS A/B fueron ejecutadas y documentadas. AC-05 avanzó con una PoC local de compresión, pero Storage y autorización de imágenes siguen pendientes. La selección de arquitectura, el restore integral y el cierre requieren sus puertas pendientes y decisión humana.
+**Estado vigente, 2026-10-21:** F01-H00 permanece abierto. La evaluación documental/local y las PoC PostgreSQL/PostGIS/RLS y Auth/JWT/Data API/RLS A/B están ejecutadas. El dump PostgreSQL 17.11 se exportó tras una consulta de solo lectura, se cifró con OpenPGP y se recuperó desde la copia externa. La captura de Windows mostró `Device encryption: On`. Se generaron 200 propiedades ficticias y 1.000 JPEG sintéticos. El dump se restauró en una base local limpia y nueve consultas de conteo pasaron; después Auth, Realtime y Storage quedaron no saludables. Tras tres iteraciones de corrección, los 12 contenedores nuevos se detuvieron y sus volúmenes y redes quedaron preservados. AC-04 está bloqueado y no satisfecho hasta que dirección autorice una nueva unidad de diagnóstico local. No se modificaron recursos Docker preexistentes ni el proyecto remoto; `supabase_ubicate` se mantuvo en solo lectura. La evidencia está en `poc-auth-data-api-rls/restauracion-respaldo.md`. La selección de arquitectura y el cierre siguen requiriendo sus puertas pendientes y decisión humana.
+
+**Prioridad actual, 2026-10-30:** Dirección autorizó priorizar la preparación del primer hito funcional de exploración local con datos ficticios. Esta prioridad no cierra H00 ni autoriza repetir el ensayo AC-04, cuyo estado continúa parcial/bloqueado/no satisfecho. La propuesta, con Spec/Plan/Tasks y decisiones por aprobar, está en `../propuesta-hito-exploracion/`. En esta sesión Docker no pudo conectarse al daemon, así que los contenedores y volúmenes preservados se confirman documentalmente, no mediante inventario vivo; no se iniciaron ni eliminaron.
 
 ## Entrada y diseño
 
@@ -34,8 +36,14 @@
 - [x] Confirmación/recuperación por correo: diferidas fuera de F01-H00 por decisión de dirección del 2026-10-16; validar antes de operar con usuarios reales. No son bloqueo para continuar la comparación arquitectónica.
 - [x] Permisos esenciales de anunciantes A/B: lectura propia, denegación anónima/cruzada y modificación propia temporal reversible, por Data API con JWT real; evidencia en `poc-auth-data-api-rls/README.md`.
 - [ ] Permisos extendidos: DELETE, roles administrativos, Storage y casos no incluidos en la matriz esencial A/B.
-- [ ] Backup: exportar datos, usuarios, roles, reglas, configuración, índices, metadata y fotos a destino independiente; checksum e inventario.
-- [ ] Restore: recrear entorno limpio; verificar IDs, relaciones, conteos, hashes, policies, login y aislamiento; medir RPO/RTO contra metas aprobadas.
+- [ ] **AC-04, ensayo integral bloqueado 2026-10-21 tras tres iteraciones de corrección:**
+  - [x] Exportar PostgreSQL 17.11 con comprobación de solo lectura, cifrado OpenPGP, recuperación desde la copia independiente y TOC de 1.408 entradas. El TOC contiene `auth`, `storage` y las seis tablas PoC.
+  - [x] Guardar configuración recuperable en EFS fuera del repositorio; el inventario remoto de Storage observado fue de cero buckets y objetos.
+  - [x] Generar en EFS 200 propiedades ficticias y 1.000 JPEG sintéticos de 640x480, con 16.870.830 bytes totales.
+  - [x] Restaurar el dump en la base limpia `postgres` del contenedor local 17.11. `pg_restore` terminó con código 0 y nueve consultas de conteo pasaron. El tiempo de `pg_restore` fue 0,808 s; no es una medida de RTO.
+  - [ ] Completar la validación del stack: Auth, Realtime y Storage quedaron no saludables tras el restore. No se diagnosticó la causa dentro de las tres iteraciones autorizadas.
+  - [ ] Integrar los datos y fotos sintéticos, crear el respaldo cifrado del ensayo, restaurarlo en el segundo entorno, completar verificaciones/mediciones y hacer la limpieza controlada.
+  - Los 12 contenedores exclusivos del ensayo están detenidos; redes y volúmenes se preservaron para revisión. No repetir la PoC A/B. Véase `poc-auth-data-api-rls/restauracion-respaldo.md`.
 - [ ] Fotos: MIME real, tamaño/dimensiones, máximo de archivos, miniatura, lazy load, entrega, permisos y borrado. La PoC local Canvas/JPEG/WebP, tamaños, tiempos, calidad y eliminación de EXIF/GPS sintéticos está documentada en `evaluacion.md`; no prueba carga a Storage ni autorización.
 - [ ] Mapa: búsqueda por sectores y puntos acordados, precisión, lecturas y fallback lista con tiles/geocoder no disponibles.
 - [ ] Cuotas: medir uso, alertas y comportamiento ante límite; no provocar sobreuso facturable ni habilitar billing.
@@ -54,3 +62,7 @@
 ## Resultado de ejecución inicial
 
 Este registro describe la ejecución inicial. Estado vigente: la suite PostgreSQL/PostGIS/RLS fue confirmada con `ROLLBACK`; luego las pruebas esenciales Auth/JWT/Data API/RLS A/B pasaron con JWT reales, incluyendo lectura propia, aislamiento cruzado y modificación temporal reversible. No repetir estas pruebas. La PoC local de fotos Canvas/WebP/JPEG está registrada en `evaluacion.md`; AC-05 sigue parcial hasta probar validación integral, Storage, autorización, miniaturas, entrega y borrado. Continúan pendientes restore integral aislado, pruebas extendidas de sesión/admin, sectores y fallback de mapa, cuotas/resiliencia, condiciones de cuenta y decisión arquitectónica. Los envíos reales de correo están diferidos fuera de F01-H00.
+
+**Actualización AC-04, 2026-10-20:** la sesión actual sí verificó `supabase_ubicate` en modo de solo lectura y la CLI scoped del proyecto; además, la prueba de cifrado/recuperación OpenPGP con datos ficticios pasó. Esta evidencia reemplaza el bloqueo histórico por MCP descrito más abajo. La exportación integral continúa pendiente: falta una copia de recuperación independiente de la clave y, después, la entrada local de la contraseña PostgreSQL existente. AC-04 sigue abierto. Detalle en `poc-auth-data-api-rls/restauracion-respaldo.md`.
+
+**Actualización AC-04, 2026-10-20:** la copia independiente de la clave OpenPGP se generó y pasó la prueba de recuperación con archivo ficticio. La siguiente intervención es introducir la contraseña PostgreSQL existente en dos prompts locales ocultos del lanzador revisado. Hasta completar exportación, restauración y verificaciones, el ensayo integral sigue pendiente y F01-H00 abierto.
