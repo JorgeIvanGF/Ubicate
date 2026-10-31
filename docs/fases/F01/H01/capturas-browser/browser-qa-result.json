@@ -90,59 +90,215 @@
         "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4852/7940.pbf",
         "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4852/7939.pbf"
       ],
-      "tileRequestCount": 34
+      "tileRequestCount": 50
     }
   },
   "observed": {
+    "listToDesktopResize": [
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "selectedView": "Lista 7, ver lista",
+        "mapDisplay": "none",
+        "container": {
+          "width": 0,
+          "height": 0
+        },
+        "canvasCss": {
+          "width": 0,
+          "height": 0
+        },
+        "canvasBitmap": {
+          "width": 400,
+          "height": 300
+        },
+        "markers": [
+          {
+            "unitId": "arrayan-1",
+            "visible": false
+          },
+          {
+            "unitId": "arrayan-2",
+            "visible": false
+          },
+          {
+            "unitId": "almendro-1",
+            "visible": false
+          },
+          {
+            "unitId": "limon-1",
+            "visible": false
+          },
+          {
+            "unitId": "limon-2",
+            "visible": false
+          },
+          {
+            "unitId": "robles-1",
+            "visible": false
+          },
+          {
+            "unitId": "sauco-1",
+            "visible": false
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "selectedView": "Lista 7, ver lista",
+        "mapDisplay": "block",
+        "container": {
+          "width": 334,
+          "height": 468
+        },
+        "canvasCss": {
+          "width": 334,
+          "height": 468
+        },
+        "canvasBitmap": {
+          "width": 334,
+          "height": 468
+        },
+        "markers": [
+          {
+            "unitId": "arrayan-1",
+            "visible": true
+          },
+          {
+            "unitId": "arrayan-2",
+            "visible": true
+          },
+          {
+            "unitId": "almendro-1",
+            "visible": true
+          },
+          {
+            "unitId": "limon-1",
+            "visible": true
+          },
+          {
+            "unitId": "limon-2",
+            "visible": true
+          },
+          {
+            "unitId": "robles-1",
+            "visible": true
+          },
+          {
+            "unitId": "sauco-1",
+            "visible": true
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "selectedView": "Lista 7, ver lista",
+        "mapDisplay": "block",
+        "container": {
+          "width": 728.796875,
+          "height": 491
+        },
+        "canvasCss": {
+          "width": 729,
+          "height": 491
+        },
+        "canvasBitmap": {
+          "width": 729,
+          "height": 491
+        },
+        "markers": [
+          {
+            "unitId": "arrayan-1",
+            "visible": true
+          },
+          {
+            "unitId": "arrayan-2",
+            "visible": true
+          },
+          {
+            "unitId": "almendro-1",
+            "visible": true
+          },
+          {
+            "unitId": "limon-1",
+            "visible": true
+          },
+          {
+            "unitId": "limon-2",
+            "visible": true
+          },
+          {
+            "unitId": "robles-1",
+            "visible": true
+          },
+          {
+            "unitId": "sauco-1",
+            "visible": true
+          }
+        ]
+      }
+    ],
+    "listToDesktopResizeSelection": {
+      "selectedUnitId": "arrayan-2",
+      "selectedListing": "listing-card is-selected"
+    },
     "accessibilityInitial": [],
     "accessibilityMobile": [],
     "markerGeometry": [
       {
         "label": "$590k, Casa del Arrayán, Habitación 1, 590.000 pesos al mes",
         "x": 348,
-        "y": 787,
+        "y": 611,
         "w": 61,
         "h": 31
       },
       {
         "label": "$760k, Casa del Arrayán, Habitación 2, 760.000 pesos al mes",
         "x": 420,
-        "y": 787,
+        "y": 611,
         "w": 61,
         "h": 31
       },
       {
         "label": "$890k, Casa del Almendro, Estudio independiente, 890.000 pesos al mes",
         "x": 483,
-        "y": 756,
+        "y": 580,
         "w": 61,
         "h": 31
       },
       {
         "label": "$720k, Casa Limón, Habitación individual, 720.000 pesos al mes",
         "x": 497,
-        "y": 628,
+        "y": 452,
         "w": 61,
         "h": 31
       },
       {
         "label": "$480k, Casa Limón, Habitación compartida, 480.000 pesos al mes",
         "x": 569,
-        "y": 628,
+        "y": 452,
         "w": 61,
         "h": 31
       },
       {
         "label": "$820k, Casa de los Robles, Habitación con balcón, 820.000 pesos al mes",
         "x": 328,
-        "y": 706,
+        "y": 530,
         "w": 61,
         "h": 31
       },
       {
         "label": "$680k, Casa del Saúco, Habitación luminosa, 680.000 pesos al mes",
         "x": 429,
-        "y": 838,
+        "y": 662,
         "w": 61,
         "h": 31
       }
@@ -150,17 +306,17 @@
     "markerPointerHit": {
       "markerRect": {
         "x": 566.5836181640625,
-        "y": 554.9116821289062,
+        "y": 434.91168212890625,
         "width": 64.83282470703125,
         "height": 64.8328857421875
       },
       "frameRect": {
         "x": 54,
-        "y": 507.828125,
+        "y": 387.828125,
         "width": 730.796875,
         "height": 493
       },
-      "scrollY": 56,
+      "scrollY": 176,
       "hitTag": "BUTTON",
       "hitClass": "map-price-marker"
     },
@@ -211,6 +367,10 @@
       },
       {
         "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2427/3970.pbf",
+        "error": "net::ERR_ABORTED"
+      },
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2425/3969.pbf",
         "error": "net::ERR_ABORTED"
       }
     ],

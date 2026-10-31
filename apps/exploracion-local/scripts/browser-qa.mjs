@@ -32,6 +32,62 @@ try {
   await page.getByRole('heading', { name: 'Opciones en Tunja' }).waitFor();
   await page.waitForFunction(() => document.querySelectorAll('.maplibregl-marker').length > 0, null, { timeout: 30000 }).catch(() => {});
 
+  // Regression for the PR review observation: keep List selected while crossing
+  // from the mobile breakpoint into desktop widths, without pressing Map.
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole('button', { name: 'Ver lista' }).click();
+  output.observed.listToDesktopResize = [];
+  for (const [width, height] of [[390, 844], [768, 1024], [1440, 1000]]) {
+    await page.setViewportSize({ width, height });
+    if (width > 760) {
+      await page.waitForFunction(() => {
+        const canvas = document.querySelector('.maplibregl-canvas');
+        return canvas && canvas.clientWidth > 0 && canvas.clientHeight > 0 && canvas.width > 0 && canvas.height > 0;
+      }, null, { timeout: 10000 });
+    }
+    await page.waitForTimeout(250);
+    const metrics = await page.evaluate(() => {
+      const host = document.querySelector('.map-canvas');
+      const canvas = document.querySelector('.maplibregl-canvas');
+      const hostRect = host.getBoundingClientRect();
+      return {
+        viewport: { width: innerWidth, height: innerHeight },
+        selectedView: document.querySelector('.mobile-switch button[aria-pressed="true"]')?.getAttribute('aria-label'),
+        mapDisplay: getComputedStyle(document.querySelector('.map-column')).display,
+        container: { width: hostRect.width, height: hostRect.height },
+        canvasCss: { width: canvas?.clientWidth ?? 0, height: canvas?.clientHeight ?? 0 },
+        canvasBitmap: { width: canvas?.width ?? 0, height: canvas?.height ?? 0 },
+        markers: [...document.querySelectorAll('.map-price-marker')].map((marker) => ({
+          unitId: marker.getAttribute('data-unit-id'),
+          visible: marker.getBoundingClientRect().width > 0 && marker.getBoundingClientRect().height > 0,
+        })),
+      };
+    });
+    output.observed.listToDesktopResize.push(metrics);
+    if (width === 390) {
+      assert.equal(metrics.mapDisplay, 'none', 'en móvil, la vista Lista debe ocultar el mapa');
+      assert.equal(metrics.container.width, 0, 'mapa oculto debe medir cero en móvil');
+    } else {
+      assert.equal(metrics.selectedView, 'Lista 7, ver lista', 'redimensionar no debe cambiar la selección Lista');
+      assert.equal(metrics.mapDisplay, 'block', 'CSS de escritorio debe mostrar el mapa al cruzar el breakpoint');
+      assert.ok(Math.abs(metrics.container.width - metrics.canvasCss.width) < 1, 'canvas CSS debe coincidir con el ancho del contenedor');
+      assert.ok(Math.abs(metrics.container.height - metrics.canvasCss.height) < 1, 'canvas CSS debe coincidir con el alto del contenedor');
+      assert.ok(Math.abs(metrics.container.width - metrics.canvasBitmap.width) < 1, 'bitmap debe coincidir con el ancho del contenedor');
+      assert.ok(Math.abs(metrics.container.height - metrics.canvasBitmap.height) < 1, 'bitmap debe coincidir con el alto del contenedor');
+      assert.equal(metrics.markers.length, 7, 'los siete marcadores deben permanecer en el mapa');
+      assert.ok(metrics.markers.every((marker) => marker.visible), 'todos los marcadores deben tener geometría visible');
+    }
+    await page.screenshot({ path: join(captureDir, `lista-resize-${width}.png`), fullPage: false });
+  }
+  await page.locator('.map-price-marker[data-unit-id="arrayan-2"]').click();
+  assert.ok((await page.locator('.listing-card[data-unit-id="arrayan-2"]').getAttribute('class'))?.includes('is-selected'), 'los marcadores deben seguir seleccionando la unidad correcta tras redimensionar');
+  output.observed.listToDesktopResizeSelection = {
+    selectedUnitId: 'arrayan-2',
+    selectedListing: await page.locator('.listing-card[data-unit-id="arrayan-2"]').getAttribute('class'),
+  };
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => document.querySelectorAll('.maplibregl-marker').length === 7, null, { timeout: 30000 });
+
   await page.addScriptTag({ content: axe.source });
   output.observed.accessibilityInitial = await page.evaluate(async () => {
     const result = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } });
