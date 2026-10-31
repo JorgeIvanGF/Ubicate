@@ -1,5 +1,5 @@
 {
-  "baseURL": "http://127.0.0.1:5173/",
+  "baseURL": "http://127.0.0.1:5175/",
   "viewportChecks": [
     {
       "width": 320,
@@ -12,6 +12,12 @@
       "mapCanvas": {
         "width": 290,
         "height": 470.625
+      },
+      "hero": {
+        "imageLoaded": true,
+        "width": 320,
+        "height": 420,
+        "creditVisible": true
       }
     },
     {
@@ -25,6 +31,12 @@
       "mapCanvas": {
         "width": 360,
         "height": 470.625
+      },
+      "hero": {
+        "imageLoaded": true,
+        "width": 390,
+        "height": 420,
+        "creditVisible": true
       }
     },
     {
@@ -38,6 +50,12 @@
       "mapCanvas": {
         "width": 334,
         "height": 468
+      },
+      "hero": {
+        "imageLoaded": true,
+        "width": 768,
+        "height": 380,
+        "creditVisible": true
       }
     },
     {
@@ -51,6 +69,12 @@
       "mapCanvas": {
         "width": 728.796875,
         "height": 491
+      },
+      "hero": {
+        "imageLoaded": true,
+        "width": 1440,
+        "height": 480,
+        "creditVisible": true
       }
     }
   ],
@@ -94,6 +118,13 @@
     }
   },
   "observed": {
+    "heroImage": {
+      "src": "/hero-cocina-compartida.jpg",
+      "alt": "Dos hombres cocinan juntos en una cocina compartida.",
+      "naturalWidth": 1200,
+      "naturalHeight": 800,
+      "credit": "Imagen editorial: Mizuno K / Pexels. No representa un alojamiento ni implica respaldo."
+    },
     "listToDesktopResize": [
       {
         "viewport": {
@@ -256,49 +287,49 @@
       {
         "label": "$590k, Casa del Arrayán, Habitación 1, 590.000 pesos al mes",
         "x": 348,
-        "y": 611,
+        "y": 1041,
         "w": 61,
         "h": 31
       },
       {
         "label": "$760k, Casa del Arrayán, Habitación 2, 760.000 pesos al mes",
         "x": 420,
-        "y": 611,
+        "y": 1041,
         "w": 61,
         "h": 31
       },
       {
         "label": "$890k, Casa del Almendro, Estudio independiente, 890.000 pesos al mes",
         "x": 483,
-        "y": 580,
+        "y": 1010,
         "w": 61,
         "h": 31
       },
       {
         "label": "$720k, Casa Limón, Habitación individual, 720.000 pesos al mes",
         "x": 497,
-        "y": 452,
+        "y": 882,
         "w": 61,
         "h": 31
       },
       {
         "label": "$480k, Casa Limón, Habitación compartida, 480.000 pesos al mes",
         "x": 569,
-        "y": 452,
+        "y": 882,
         "w": 61,
         "h": 31
       },
       {
         "label": "$820k, Casa de los Robles, Habitación con balcón, 820.000 pesos al mes",
         "x": 328,
-        "y": 530,
+        "y": 960,
         "w": 61,
         "h": 31
       },
       {
         "label": "$680k, Casa del Saúco, Habitación luminosa, 680.000 pesos al mes",
         "x": 429,
-        "y": 662,
+        "y": 1092,
         "w": 61,
         "h": 31
       }
@@ -306,17 +337,17 @@
     "markerPointerHit": {
       "markerRect": {
         "x": 566.5836181640625,
-        "y": 434.91168212890625,
+        "y": 555.3804321289062,
         "width": 64.83282470703125,
         "height": 64.8328857421875
       },
       "frameRect": {
         "x": 54,
-        "y": 387.828125,
+        "y": 508.296875,
         "width": 730.796875,
         "height": 493
       },
-      "scrollY": 176,
+      "scrollY": 310,
       "hitTag": "BUTTON",
       "hitClass": "map-price-marker"
     },
@@ -368,13 +399,18 @@
       "listingCount": 2
     },
     "networkHosts": [
-      "127.0.0.1:5173",
+      "127.0.0.1:5175",
       "tiles.openfreemap.org"
     ],
     "supabaseRequests": [],
     "consoleErrors": [],
     "pageErrors": [],
-    "failedRequests": [],
+    "failedRequests": [
+      {
+        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2425/3969.pbf",
+        "error": "net::ERR_ABORTED"
+      }
+    ],
     "errorResponses": [
       {
         "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4853/7940.pbf",

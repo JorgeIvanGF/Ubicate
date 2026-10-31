@@ -30,6 +30,22 @@ const output = { baseURL, viewportChecks: [], reproduced: {}, observed: {} };
 try {
   await page.goto(baseURL, { waitUntil: 'domcontentloaded' });
   await page.getByRole('heading', { name: 'Opciones en Tunja' }).waitFor();
+  const heroImage = page.locator('.exploration-hero-image');
+  await heroImage.waitFor({ state: 'visible' });
+  await page.waitForFunction(() => {
+    const image = document.querySelector('.exploration-hero-image');
+    return image?.complete && image.naturalWidth === 1200 && image.naturalHeight === 800;
+  });
+  output.observed.heroImage = await heroImage.evaluate((image) => ({
+    src: new URL(image.src).pathname,
+    alt: image.alt,
+    naturalWidth: image.naturalWidth,
+    naturalHeight: image.naturalHeight,
+    credit: document.querySelector('.hero-image-credit')?.textContent.trim(),
+  }));
+  assert.equal(output.observed.heroImage.src, '/hero-cocina-compartida.jpg', 'la foto editorial debe servirse desde el proyecto local');
+  assert.equal(output.observed.heroImage.alt, 'Dos hombres cocinan juntos en una cocina compartida.');
+  assert.ok(output.observed.heroImage.credit.includes('Mizuno K / Pexels'));
   await page.waitForFunction(() => document.querySelectorAll('.maplibregl-marker').length > 0, null, { timeout: 30000 }).catch(() => {});
 
   // Regression for the PR review observation: keep List selected while crossing
@@ -94,6 +110,7 @@ try {
     return result.violations.map(({ id, impact, description, nodes }) => ({ id, impact, description, count: nodes.length, nodes: nodes.map((node) => ({ target: node.target, summary: node.failureSummary, checks: node.any.map((check) => check.data) })) }));
   });
 
+  await page.evaluate(() => window.scrollTo(0, 0));
   for (const [width, height] of [[320, 844], [390, 844], [768, 1024], [1440, 1000]]) {
     await page.setViewportSize({ width, height });
     await page.waitForTimeout(250);
@@ -104,9 +121,14 @@ try {
       jsMobile: window.matchMedia('(max-width: 760px)').matches,
       cssMobile: window.matchMedia('(max-width: 760px)').matches,
       mapCanvas: (() => { const r = document.querySelector('.map-canvas')?.getBoundingClientRect(); return r && { width: r.width, height: r.height }; })(),
+      hero: (() => { const image = document.querySelector('.exploration-hero-image'); const box = image?.getBoundingClientRect(); return image && box ? { imageLoaded: image.complete && image.naturalWidth > 0, width: box.width, height: box.height, creditVisible: document.querySelector('.hero-image-credit')?.getClientRects().length > 0 } : null; })(),
     }));
     await page.screenshot({ path: join(captureDir, `exploracion-${width}.png`), fullPage: false });
     output.viewportChecks.push({ width, height, ...metrics });
+    assert.ok(metrics.hero?.imageLoaded, `hero debe cargar la imagen a ${width}px`);
+    assert.ok(metrics.hero.width > 0 && metrics.hero.height > 0, `hero debe tener dimensiones visibles a ${width}px`);
+    assert.ok(metrics.hero.creditVisible, `crédito editorial debe ser visible a ${width}px`);
+    assert.equal(metrics.scrollWidth, metrics.innerWidth, `hero no debe provocar desbordamiento horizontal a ${width}px`);
     if (width === 390) {
       output.observed.accessibilityMobile = await page.evaluate(async () => {
         const result = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } });

@@ -52,7 +52,7 @@ $env:UBICATE_URL = 'http://127.0.0.1:4173/'
 npm run test:browser
 ```
 
-El recorrido verifica filtros compuestos y vacíos, sincronización de los dos sentidos, cada viewport de 320, 390, 768 y 1440 px, foco del diálogo, axe WCAG 2.2 A/AA, resize del mapa, aislamiento de red y un HTTP 503 de tiles inyectado en la ruta OpenFreeMap después de cargar el estilo. Produce capturas y `browser-qa-result.json` en `../../docs/fases/F01/H01/capturas-browser/`.
+El recorrido verifica que la foto local del hero y su crédito sean visibles, el texto alternativo, filtros compuestos y vacíos, sincronización de los dos sentidos, cada viewport de 320, 390, 768 y 1440 px, foco del diálogo, axe WCAG 2.2 A/AA, resize del mapa, aislamiento de red y un HTTP 503 de tiles inyectado en la ruta OpenFreeMap después de cargar el estilo. Produce capturas y `browser-qa-result.json` en `../../docs/fases/F01/H01/capturas-browser/`.
 
 El servidor está enlazado a `127.0.0.1`, así que el teléfono físico no puede abrirlo en la red local. Las capturas Playwright a 320 y 390 px sirven como comprobación automatizada de layout móvil, no como prueba en dispositivo físico. No se abre el servidor a la red ni se cambia el firewall en este hito.
 
@@ -87,6 +87,6 @@ Antes de usarlo, consulta las [condiciones OpenFreeMap](https://openfreemap.org/
 
 - Los puntos de mapa y anuncios son inventados para Tunja. No se deben interpretar como viviendas, disponibilidad o precios reales.
 - Los gráficos de habitación son ilustraciones CSS, no fotografías de alojamientos.
-- Se reutiliza el logo aprobado de F00-H03 y sus colores. La imagen editorial de H03, cuyos derechos no están verificados, no se copia.
+- Se reutiliza el logo y la paleta aprobados de F00-H03. El hero usa la foto “Men Cooking at Home” de Mizuno K, alojada localmente como `public/hero-cocina-compartida.jpg`; la fuente y condiciones están en [Pexels](https://www.pexels.com/photo/men-cooking-at-home-13334672/) y [su licencia](https://www.pexels.com/legal-pages/license). La atribución visible aclara que la imagen es editorial, no representa un alojamiento ni implica respaldo. La imagen adjunta a H03 con origen no verificable no se distribuye con la aplicación.
 - WhatsApp, registro, contacto, reservas, autenticación, persistencia, backend, Supabase y visor 360° no forman parte de esta versión.
 - El estado reproducible de AC-FE-01 a AC-FE-09 está en el [registro de evidencia de F01-H01](../../docs/fases/F01/H01/evidencia.md). Responsive y accesibilidad se verificaron en Chromium automatizado; revisión visual de Dirección y dispositivo físico siguen pendientes.

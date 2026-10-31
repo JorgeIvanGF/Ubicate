@@ -106,12 +106,14 @@ export default function App() {
       </header>
 
       <main id="inicio">
-        <section className="intro-row" aria-labelledby="page-title">
-          <div>
+        <section className="exploration-hero" aria-labelledby="page-title">
+          <img className="exploration-hero-image" src="/hero-cocina-compartida.jpg" alt="Dos hombres cocinan juntos en una cocina compartida." width="1200" height="800" fetchPriority="high" />
+          <div className="exploration-hero-copy">
             <p className="eyebrow"><span className="eyebrow-dot" /> TU PRÓXIMO LUGAR EMPIEZA AQUÍ</p>
             <h1 id="page-title">Encuentra tu espacio<br /><span>en Tunja.</span></h1>
+            <p className="intro-copy">Explora habitaciones y alojamientos a tu ritmo. Compara opciones y encuentra la que se siente como tu próximo hogar.</p>
           </div>
-          <p className="intro-copy">Explora habitaciones y alojamientos a tu ritmo. Compara opciones y encuentra la que se siente como tu próximo hogar.</p>
+          <p className="hero-image-credit">Imagen editorial: <a href="https://www.pexels.com/photo/men-cooking-at-home-13334672/" target="_blank" rel="noreferrer">Mizuno K / Pexels</a>. No representa un alojamiento ni implica respaldo.</p>
         </section>
 
         <section className="search-panel" aria-label="Filtros de alojamiento">
