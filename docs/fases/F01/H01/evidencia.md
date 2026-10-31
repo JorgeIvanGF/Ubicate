@@ -2,6 +2,8 @@
 
 **Estado:** validación funcional local automatizada ejecutada; pendiente de revisión y aceptación de Dirección. F01-H01 permanece abierto. No se cierra F01-H00 ni se modifica su estado de AC-04.
 
+**Corrección visual de ficha, 2026-10-31:** se reprodujo el solapamiento de «Ilustración de ejemplo» y «Inmueble de ejemplo · Tunja» al abrir el detalle a 1440×1000 y 390×844. La regla `.dialog-hero .art-disclosure { display: none }` oculta solo la etiqueta sobre la ilustración dentro del detalle. La etiqueta del inmueble queda visible; las tarjetas conservan «Ilustración de ejemplo» y el nombre accesible de las ilustraciones no cambia. Playwright verifica ambos viewports y guarda capturas antes/después. La aceptación visual humana de Dirección sigue pendiente.
+
 **Comprobación final del PR #1, 2026-10-30:** se reprodujo con Chromium/Playwright la secuencia de abrir a 390 px, elegir Lista y cambiar a 768 y 1440 px sin elegir Mapa. El CSS mostró el mapa en escritorio y MapLibre redimensionó el canvas; los siete marcadores permanecieron visibles y el clic en `arrayan-2` seleccionó la unidad correcta. No se reprodujo un defecto, por lo que no se modificó `App.tsx`; se añadió esta secuencia como regresión automatizada y se guardaron capturas. El estado de Lista se conservó durante los cambios de tamaño. Esta verificación cubre la observación técnica del PR, no constituye aceptación final del hito.
 
 ## Entorno y reproducibilidad
@@ -31,6 +33,7 @@ El recorrido guarda resultados estructurados y capturas en [`capturas-browser`](
 | Error cartográfico posterior al estilo | Se inyectó HTTP 503 a tiles luego de cargar el estilo | El adaptador escucha errores de MapLibre también después de `style.load`, conserva el resto de la interfaz y ofrece reintento | Estado informativo visible; filtros y dos resultados sobreviven; reintento repone dos marcadores y retira el error |
 | Selector mapa/lista, teclado, foco y resize | Recorrido con Playwright por teclado y cambios de visibilidad | Controles semánticos como botones toggle con `aria-pressed`; foco por unidad al sincronizar; foco inicial/cierre/restauración del diálogo; `map.resize()` al mostrarse y cambiar viewport | Enter cambia a lista; foco del diálogo y retorno comprobados; canvas vuelve a medir 360 px en contenedor de 360 px después de ocultar/mostrar |
 | Observación final PR #1: Lista móvil y cambio a escritorio | Playwright, secuencia 390 → 768 → 1440 px sin pulsar Mapa | Mapa visible en escritorio; medidas CSS y bitmap del canvas iguales al contenedor con tolerancia <1 px; siete marcadores visibles e interactivos | PASS; detalles en `listToDesktopResize` del JSON y capturas `lista-resize-*` |
+| Etiquetas superpuestas en ficha | Reproducido antes de corregir en 1440×1000 y 390×844; los rectángulos de ambas etiquetas se intersectaban | CSS oculta `.dialog-hero .art-disclosure` solo dentro del hero del diálogo | PASS en escritorio y móvil: solo queda visible «Inmueble de ejemplo · Tunja»; tarjeta conserva «Ilustración de ejemplo» y el `aria-label` original |
 | Bundle local de MapLibre no iniciaba worker en Vite | Error del worker impedía dibujar el mapa en Chromium | URL explícita del worker de MapLibre para el bundler Vite | Chromium cargó estilo, tiles y controles; mapa pintado en capturas |
 | Contraste/etiquetas detectadas por axe | Primer audit reportó contraste insuficiente y diferencia entre texto visible y nombre accesible | Ajustes de tonos secundarios y nombres de marcadores/control de lista; identidad aprobada y logo sin cambios | axe en vista inicial, móvil y diálogo no reporta violaciones |
 
@@ -45,6 +48,7 @@ La configuración del worker sigue el procedimiento oficial de MapLibre para Vit
 | `npm.cmd audit --audit-level=moderate` | PASS, 0 vulnerabilidades reportadas | Auditoría del árbol npm instalado |
 | `git diff --check` | PASS, sin errores whitespace | Salida local; solo advertencias CRLF de Git |
 | `npm.cmd run test:browser` | PASS | El proceso termina 0 y guarda `browser-qa-result.json`; todos los asserts del recorrido completados |
+| Regresión de etiquetas de ficha | PASS en 1440×1000 y 390×844 | `detailDisclosure` en el JSON: etiqueta ilustrativa oculta en detalle; etiqueta del inmueble visible; etiqueta de tarjetas y nombre accesible conservados |
 | Secuencia final PR #1: Lista 390 → 768 → 1440 | PASS | En 390 px el mapa queda oculto y mide 0×0; en 768 mide 334×468 y en 1440 mide 729×491. Canvas CSS/bitmap coincide con el contenedor dentro de 1 px; siete marcadores visibles y clic en `arrayan-2` selecciona la misma unidad. No se pulsó Mapa entre cambios de viewport. |
 | axe WCAG 2.2 A/AA automatizado | PASS en las tres vistas auditadas | Vista inicial, viewport móvil 390 px y detalle abierto: arrays de violaciones vacíos |
 | Consola/errores JS | PASS | `consoleErrors=[]`, `pageErrors=[]` |
@@ -81,6 +85,10 @@ Estos resultados representan verificación técnica reproducible, no aceptación
 - [Lista seleccionada a 390 px antes del cambio de viewport](capturas-browser/lista-resize-390.png)
 - [Mapa visible con Lista aún seleccionada a 768 px](capturas-browser/lista-resize-768.png)
 - [Mapa visible con Lista aún seleccionada a 1440 px](capturas-browser/lista-resize-1440.png)
+- [Detalle antes de la corrección, solapamiento a 1440 px](capturas-browser/detail-overlap-1440.png)
+- [Detalle antes de la corrección, solapamiento a 390 px](capturas-browser/detail-overlap-390.png)
+- [Detalle corregido, 1440 px](capturas-browser/detail-fixed-1440.png)
+- [Detalle corregido, 390 px](capturas-browser/detail-fixed-390.png)
 - [Fallback durante respuesta 503 sintética](capturas-browser/tile-outage.png)
 - [Resultado estructurado completo](capturas-browser/browser-qa-result.json)
 
@@ -89,4 +97,4 @@ Estos resultados representan verificación técnica reproducible, no aceptación
 - Revisión visual humana de las capturas y del recorrido local.
 - Prueba opcional en un teléfono físico, fuera de este entorno de loopback.
 - Decidir si el umbral de advertencia del chunk MapLibre se acepta para esta entrega local o se aborda en una unidad posterior; build sí pasa.
-- Aceptación explícita de F01-H01. No se publica otro commit desde esta validación.
+- Aceptación visual explícita de Dirección y aceptación final de F01-H01. El commit de esta corrección mantiene el hito abierto.

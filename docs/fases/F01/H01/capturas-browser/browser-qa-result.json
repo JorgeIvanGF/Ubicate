@@ -90,7 +90,7 @@
         "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4852/7940.pbf",
         "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4852/7939.pbf"
       ],
-      "tileRequestCount": 50
+      "tileRequestCount": 46
     }
   },
   "observed": {
@@ -324,6 +324,28 @@
       "listings": 2,
       "markers": 2
     },
+    "detailDisclosure": [
+      {
+        "viewport": 1440,
+        "illustrationDisplay": "none",
+        "illustrationVisible": false,
+        "propertyLabel": "Inmueble de ejemplo · Tunja",
+        "propertyLabelVisible": true,
+        "illustrationAccessibleName": "Ilustración ficticia de habitación, no es una fotografía del alojamiento",
+        "cardIllustrationDisplay": "block",
+        "cardIllustrationText": "Ilustración de ejemplo"
+      },
+      {
+        "viewport": 390,
+        "illustrationDisplay": "none",
+        "illustrationVisible": false,
+        "propertyLabel": "Inmueble de ejemplo · Tunja",
+        "propertyLabelVisible": true,
+        "illustrationAccessibleName": "Ilustración ficticia de habitación, no es una fotografía del alojamiento",
+        "cardIllustrationDisplay": "block",
+        "cardIllustrationText": "Ilustración de ejemplo"
+      }
+    ],
     "accessibilityDialog": [],
     "dialogInitialFocus": "Cerrar detalle",
     "dialogShiftTabFocus": "Cerrar detalle",
@@ -352,28 +374,7 @@
     "supabaseRequests": [],
     "consoleErrors": [],
     "pageErrors": [],
-    "failedRequests": [
-      {
-        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2425/3969.pbf",
-        "error": "net::ERR_ABORTED"
-      },
-      {
-        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2427/3969.pbf",
-        "error": "net::ERR_ABORTED"
-      },
-      {
-        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2425/3970.pbf",
-        "error": "net::ERR_ABORTED"
-      },
-      {
-        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2427/3970.pbf",
-        "error": "net::ERR_ABORTED"
-      },
-      {
-        "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/13/2425/3969.pbf",
-        "error": "net::ERR_ABORTED"
-      }
-    ],
+    "failedRequests": [],
     "errorResponses": [
       {
         "url": "https://tiles.openfreemap.org/planet/20261025_080012_pt/14/4853/7940.pbf",

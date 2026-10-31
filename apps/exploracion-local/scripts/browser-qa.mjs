@@ -178,6 +178,29 @@ try {
   await page.getByRole('dialog').waitFor();
   assert.equal(await page.locator('.unit-row').count(), 2, 'ficha debe mostrar las dos unidades del inmueble');
   assert.ok(await page.getByText('Ubicación aproximada', { exact: true }).count() > 0, 'ficha debe advertir que el punto es aproximado');
+  output.observed.detailDisclosure = [];
+  for (const [width, height] of [[1440, 1000], [390, 844]]) {
+    await page.setViewportSize({ width, height });
+    const disclosure = await page.evaluate(() => ({
+      illustrationDisplay: getComputedStyle(document.querySelector('.dialog-hero .art-disclosure')).display,
+      illustrationVisible: document.querySelector('.dialog-hero .art-disclosure').getClientRects().length > 0,
+      propertyLabel: document.querySelector('.dialog-hero .dialog-fiction').textContent.trim(),
+      propertyLabelVisible: document.querySelector('.dialog-hero .dialog-fiction').getClientRects().length > 0,
+      illustrationAccessibleName: document.querySelector('.dialog-hero [role="img"]').getAttribute('aria-label'),
+      cardIllustrationDisplay: getComputedStyle(document.querySelector('.listing-card .art-disclosure')).display,
+      cardIllustrationText: document.querySelector('.listing-card .art-disclosure').textContent.trim(),
+    }));
+    output.observed.detailDisclosure.push({ viewport: width, ...disclosure });
+    assert.equal(disclosure.illustrationDisplay, 'none', 'la etiqueta de ilustración debe ocultarse dentro del hero del diálogo');
+    assert.equal(disclosure.illustrationVisible, false, 'la etiqueta de ilustración no debe ocupar espacio visible en el diálogo');
+    assert.equal(disclosure.propertyLabel, 'Inmueble de ejemplo · Tunja', 'la ficha conserva la etiqueta de inmueble de ejemplo');
+    assert.equal(disclosure.propertyLabelVisible, true, 'la etiqueta del inmueble debe permanecer visible');
+    assert.equal(disclosure.illustrationAccessibleName, 'Ilustración ficticia de habitación, no es una fotografía del alojamiento', 'se conserva el nombre accesible de la ilustración');
+    assert.equal(disclosure.cardIllustrationDisplay, 'block', 'la etiqueta original permanece en las tarjetas');
+    assert.equal(disclosure.cardIllustrationText, 'Ilustración de ejemplo');
+    await page.screenshot({ path: join(captureDir, `detail-fixed-${width}.png`), fullPage: false });
+  }
+  await page.setViewportSize({ width: 1440, height: 1000 });
   output.observed.accessibilityDialog = await page.evaluate(async () => {
     const result = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] } });
     return result.violations.map(({ id, impact, description, nodes }) => ({ id, impact, description, count: nodes.length, nodes: nodes.map((node) => ({ target: node.target, summary: node.failureSummary, checks: node.any.map((check) => check.data) })) }));
