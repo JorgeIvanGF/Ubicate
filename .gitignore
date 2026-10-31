@@ -10,6 +10,16 @@ coverage/
 .env.*
 !.env.example
 
+# Material privado y exportaciones locales, nunca publicar en este repositorio
+*.dump
+*.backup
+*.gpg
+*.pgp
+*.pem
+*.key
+**/credentials.json
+**/*service-account*.json
+
 # Ejecutores temporales de las PoC Auth y backup
 /docs/fases/F01/H00/poc-auth-data-api-rls/scripts/crear-backup-baseline.ps1
 /docs/fases/F01/H00/poc-auth-data-api-rls/scripts/ejecutar-poc-auth-data-api-rls.ps1
