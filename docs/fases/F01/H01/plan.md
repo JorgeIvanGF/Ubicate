@@ -1,6 +1,6 @@
 # Plan: F01-H01 Exploración funcional local del MVP
 
-**Estado:** autorizado y en ejecución local. Ver [Spec](spec.md) y [Tasks](tasks.md).
+**Estado:** ejecución y verificación técnica local completadas; entrega pendiente de revisión de Dirección. Ver [Spec](spec.md), [Tasks](tasks.md) y [Evidencia](evidencia.md).
 
 ## Flujo
 

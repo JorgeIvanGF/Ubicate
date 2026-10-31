@@ -6,6 +6,7 @@ import { PropertyArtwork } from './PropertyArtwork';
 const MapAdapter = lazy(() => import('../map/MapAdapter').then((module) => ({ default: module.MapAdapter })));
 
 type MobileView = 'map' | 'list';
+const MOBILE_BREAKPOINT = 760;
 
 function formatPrice(price: number) {
   return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(price);
@@ -49,12 +50,9 @@ export default function App() {
     const listing = allListings.find((item) => item.unit.id === id);
     if (!listing) return;
     setAnnouncement(`${listing.name}, ${listing.unit.name} seleccionado.`);
-    if (fromMap && window.matchMedia('(max-width: 700px)').matches) setMobileView('list');
-    if (!fromMap) {
-      const marker = document.querySelector<HTMLButtonElement>(`.map-price-marker[aria-label^="${CSS.escape(listing.name)}"]`);
-      if (window.matchMedia('(max-width: 700px)').matches) setMobileView('map');
-      window.setTimeout(() => marker?.focus({ preventScroll: true }), 120);
-    } else {
+    if (fromMap && window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches) setMobileView('list');
+    if (!fromMap && window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`).matches) setMobileView('map');
+    if (fromMap) {
       window.setTimeout(() => resultRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
     }
   }
@@ -108,12 +106,14 @@ export default function App() {
       </header>
 
       <main id="inicio">
-        <section className="intro-row" aria-labelledby="page-title">
-          <div>
+        <section className="exploration-hero" aria-labelledby="page-title">
+          <img className="exploration-hero-image" src="/hero-cocina-compartida.jpg" alt="Dos hombres cocinan juntos en una cocina compartida." width="1200" height="800" fetchPriority="high" />
+          <div className="exploration-hero-copy">
             <p className="eyebrow"><span className="eyebrow-dot" /> TU PRÓXIMO LUGAR EMPIEZA AQUÍ</p>
             <h1 id="page-title">Encuentra tu espacio<br /><span>en Tunja.</span></h1>
+            <p className="intro-copy">Explora habitaciones y alojamientos a tu ritmo. Compara opciones y encuentra la que se siente como tu próximo hogar.</p>
           </div>
-          <p className="intro-copy">Explora habitaciones y alojamientos a tu ritmo. Compara opciones y encuentra la que se siente como tu próximo hogar.</p>
+          <p className="hero-image-credit">Imagen editorial: <a href="https://www.pexels.com/photo/men-cooking-at-home-13334672/" target="_blank" rel="noreferrer">Mizuno K / Pexels</a>. No representa un alojamiento ni implica respaldo.</p>
         </section>
 
         <section className="search-panel" aria-label="Filtros de alojamiento">
@@ -144,16 +144,16 @@ export default function App() {
           <p>Ubicaciones aproximadas para cuidar la privacidad.</p>
         </div>
 
-        <div className="mobile-switch" role="tablist" aria-label="Ver mapa o lista">
-          <button type="button" role="tab" aria-selected={mobileView === 'map'} className={mobileView === 'map' ? 'active' : ''} onClick={() => setMobileView('map')}>Mapa <span aria-hidden="true">⌖</span></button>
-          <button type="button" role="tab" aria-selected={mobileView === 'list'} className={mobileView === 'list' ? 'active' : ''} onClick={() => setMobileView('list')}>Lista <span className="tab-count">{visible.length}</span></button>
+        <div className="mobile-switch" role="group" aria-label="Cambiar vista de resultados">
+          <button type="button" aria-label="Ver mapa" aria-pressed={mobileView === 'map'} className={mobileView === 'map' ? 'active' : ''} onClick={() => setMobileView('map')}>Mapa <span aria-hidden="true">⌖</span></button>
+          <button type="button" aria-label={`Lista ${visible.length}, ver lista`} aria-pressed={mobileView === 'list'} className={mobileView === 'list' ? 'active' : ''} onClick={() => setMobileView('list')}>Lista <span className="tab-count">{visible.length}</span></button>
         </div>
 
         <section className="explore-grid" aria-label="Mapa y alojamientos">
           <section className={`map-column${mobileView === 'list' ? ' mobile-hidden' : ''}`} aria-labelledby="map-heading">
             <div className="section-title-row"><div><p className="section-label">UBÍCATE EN EL MAPA</p><h2 id="map-heading">Tunja y sus zonas</h2></div><span className="approx-badge"><i /> Puntos aproximados</span></div>
             <Suspense fallback={<div className="map-state" role="status"><h3>Preparando el mapa de Tunja</h3><p>Los filtros y la lista están disponibles mientras carga.</p></div>}>
-              <MapAdapter listings={visible} selectedId={selectedId} onSelect={(id) => selectListing(id, true)} forceFailure={forceMapFailure} retryKey={retryKey} onShowList={() => setMobileView('list')} />
+              <MapAdapter listings={visible} selectedId={selectedId} onSelect={(id) => selectListing(id, true)} forceFailure={forceMapFailure} retryKey={retryKey} onShowList={() => setMobileView('list')} isVisible={mobileView === 'map'} />
             </Suspense>
             <div className="map-meta"><span><i className="legend-dot" /> Habitación</span><span>Acerca o arrastra para explorar</span></div>
           </section>
@@ -162,7 +162,7 @@ export default function App() {
             <div className="section-title-row"><div><p className="section-label">HECHAS PARA TU DÍA A DÍA</p><h2 id="list-heading">Lugares para ti</h2></div><span className="sort-note">Orden por relevancia</span></div>
             <div className="listing-list" aria-live="polite" aria-relevant="additions text">
               {visible.map((listing) => (
-                <article className={`listing-card${selectedId === listing.unit.id ? ' is-selected' : ''}`} key={listing.unit.id} ref={(element) => { resultRefs.current[listing.unit.id] = element; }}>
+                <article className={`listing-card${selectedId === listing.unit.id ? ' is-selected' : ''}`} data-unit-id={listing.unit.id} key={listing.unit.id} ref={(element) => { resultRefs.current[listing.unit.id] = element; }}>
                   <button type="button" className="listing-main" onClick={() => selectListing(listing.unit.id)} aria-pressed={selectedId === listing.unit.id}>
                     <PropertyArtwork property={listing} compact />
                     <span className="listing-info">

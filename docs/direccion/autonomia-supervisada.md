@@ -21,6 +21,7 @@ Codex puede:
 - Actualizar documentación y evidencias del hito.
 - Coordinar subagentes para trabajo independiente cuando la sesión los permita, con un responsable de integración y límites de archivos claros.
 - Realizar commits locales únicamente cuando el trabajo esté expresamente autorizado y supere los controles de calidad definidos para la tarea.
+- Crear y actualizar ramas de trabajo, publicar en esas ramas y abrir Pull Requests Draft cuando el objetivo y alcance estén autorizados por Dirección.
 
 La autorización de una tarea cubre sus pasos técnicos ordinarios y reversibles. No extiende el alcance a decisiones o efectos externos enumerados abajo.
 
@@ -36,13 +37,26 @@ Se debe detener el trabajo afectado y solicitar intervención humana antes de:
 - Hacer cambios sustanciales de seguridad, autenticación o permisos.
 - Asumir costos o tomar decisiones con consecuencias económicas.
 - Acceder, crear o modificar datos reales.
-- Publicar contenido externamente, hacer push, merge o desplegar.
+- Publicar contenido externamente fuera de ramas de trabajo autorizadas, integrar cambios a `main` o desplegar.
 - Ejecutar operaciones destructivas o irreversibles.
 - Autorizar hooks automáticos, cambiar configuración global de Codex o debilitar controles de seguridad.
 
 La intervención humana se solicita únicamente para estos límites, otros expresamente reservados a dirección o cuando exista un bloqueo que no pueda resolverse de forma segura dentro del alcance autorizado.
 
 Las decisiones pendientes se mantienen etiquetadas como propuestas. Una revisión de prototipo no aprueba automáticamente su identidad gráfica ni sus decisiones técnicas.
+
+## Flujo de ramas y Pull Requests
+
+Dirección aprueba el flujo permanente de ramas independientes y Pull Requests para el desarrollo del proyecto:
+
+- Codex puede crear una rama de trabajo desde el commit vigente de `main`, realizar commits y publicar sus cambios en esa rama cuando el alcance de la tarea esté autorizado.
+- Codex puede crear el Pull Request como Draft y actualizar esa misma rama y Pull Request tras revisión, sin aprobación rutinaria por cada corrección.
+- ChatGPT revisará el código y la documentación mediante GitHub MCP como revisión independiente; Codex atenderá sus observaciones en la misma rama dentro del alcance aprobado.
+- Integrar el Pull Request a `main` requiere aceptación expresa de Dirección. Un review, un estado Draft/Ready o checks verdes no sustituyen esa aceptación.
+- Nunca hacer force push, desplegar, habilitar gastos ni ejecutar operaciones destructivas sin autorización específica.
+- El repositorio es público: excluir secretos, credenciales, tokens, claves privadas, respaldos, exportaciones y datos personales antes de stagear y publicar.
+
+Este flujo autoriza publicación solo en ramas de trabajo dentro del alcance aprobado. No cambia las protecciones del repositorio ni autoriza modificaciones de configuración, permisos o infraestructura.
 
 ## Flujo de ejecución
 
